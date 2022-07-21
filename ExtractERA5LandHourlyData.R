@@ -20,10 +20,10 @@ WorkDir <- "C:\\Path\\To\\My\\WorkDir - enter here"
 
 #If you are behind a proxy server
 #Set to empty string ("") if no proxy is required
-Sys.setenv(
-  http_proxy = "",
-  https_proxy = ""
-)
+#Sys.setenv(
+#  http_proxy = "",
+#  https_proxy = ""
+#)
 #General format:
 #user:password@proxy:port
 #https://stackoverflow.com/questions/6467277/proxy-setting-for-r
