@@ -1,0 +1,3 @@
+LocationLabel;Lat_EPSG4326;Lon_EPSG4326;DateStart;DateEnd;Parameter;Dataset;Comment
+Tokyo;35.689722;139.692222;01.02.2021;28.02.2021;2m_temperature;reanalysis-era5-land;reanalysis-era5-land has higher spatial resolution compared to era5
+Munich;48.135125;11.581981;05.12.2000;10.01.2001;total_cloud_cover;reanalysis-era5-single-levels;Total cloud cover not available for dataset reanalysis-era5-land
