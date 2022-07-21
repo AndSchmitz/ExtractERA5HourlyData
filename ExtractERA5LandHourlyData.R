@@ -124,6 +124,22 @@ if ( any( is.na(PointCoords) ) ) {
   stop("Columns DateStart and DateEnd in PointCoords.csv must contain dates in format \"YYYY-MM-DD\"")
 }
 
+#_Sanity check dates----
+DiffToEndTime_days_min <- 7
+DiffToEndTime_days <- as.numeric(difftime(
+  time1 = as.Date(Sys.Date()),
+  time2 = PointCoords$DateEnd,
+  units = "days"
+))
+if ( any(DiffToEndTime_days < DiffToEndTime_days_min) ) {
+  stop(
+    "ERA5 data is only available to up to around 5 days in the past.
+    This script adds an additional buffer of 2 days, thus allowing to download data to up to 7 days in the past.
+    Some of the values in the \"DateEnd\" column of the input file are more recent dates, please adjust.
+    More information: https://confluence.ecmwf.int/display/CUSF/Release+of+ERA5T"
+  )
+}
+
 
 #Set CDS credentials-----
 wf_set_key(
