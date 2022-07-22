@@ -60,12 +60,15 @@ DownloadTimeout_s <- 60 * 60 * 6 #6 hours
 #Step1:
 #Open R on the system and execute the following commands:
 #library(keyring)
-#keyring_delete("ecmwfr") #if existing
+#This triggers the creation of the keyring "system":
+#keyring_list() 
+#Clear (if existing) and create an ecmwfr keyring:
+#keyring_delete("ecmwfr")
 #keyring_create("ecmwfr")
 #Enter any password, e.g. 1234
 #
 #Step 2:
-#In this script, uncomment the following lines
+#Uncomment the following lines
 # library(keyring)
 # keyring_unlock(keyring = "ecmwfr", password = "1234")
 #
