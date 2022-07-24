@@ -60,6 +60,7 @@ DownloadTimeout_s <- 60 * 60 * 6 #6 hours
 #Step1:
 #Open R on the system and execute the following commands:
 #library(keyring)
+#options(keyring_backend="file")
 #This triggers the creation of the keyring "system":
 #keyring_list() 
 #Clear (if existing) and create an ecmwfr keyring:
@@ -70,6 +71,7 @@ DownloadTimeout_s <- 60 * 60 * 6 #6 hours
 #Step 2:
 #Uncomment the following lines
 # library(keyring)
+# options(keyring_backend="file")
 # keyring_unlock(keyring = "ecmwfr", password = "1234")
 #
 #Step 3:
