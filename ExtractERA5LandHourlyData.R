@@ -11,12 +11,15 @@ library(ncdf4) #for NetCDF handling
 
 #Set parameters----
 
-#Copernicus data storage (CDS) credentials
-UID <- "99999 - enter here"
-APIKey <- "2b04f9df - enter here"
+#ECMWF credentials
+UID <- "0ea59a73-96e9-41db-b7b7-....."
+PAT <- "63dc4632-7ed7-4ac2-985d-....."
 
 #Set working directory
-WorkDir <- "C:\\Path\\To\\My\\WorkDir - enter here"
+WorkDir <- "/home/username/..."
+
+#Define full path to grib_to_netcdf utility
+FullPathTo_grib_to_netcdf <- "/usr/bin/grib_to_netcdf"
 
 #If you are behind a proxy server
 #Set to empty string ("") if no proxy is required
@@ -89,7 +92,7 @@ dir.create(OutDir,showWarnings = F)
 OutputFileName <- file.path(OutDir,paste0("ERA5_extracted_",format(StartTime,"%Y-%m-%d %H-%M-%S"),".csv"))
 
 #Define base name for temp files
-TempFileBaseName <- "ERA5TempFile_"
+TempFileBaseName <- "ECMWFTempFile_"
 
 #Prepare coords for points to extract----
 PointCoordsPath <- file.path(InDir,"PointCoords.csv")
@@ -146,11 +149,10 @@ if ( any(DiffToEndTime_days < DiffToEndTime_days_min) ) {
 }
 
 
-#Set CDS credentials-----
+#Set ECMWF credentials-----
 wf_set_key(
   user = UID,
-  key = APIKey,
-  service = "cds"
+  key = PAT
 )
 
 
@@ -209,7 +211,7 @@ for ( iRow in 1:nrow(PointCoords) ) {
     TempFileExists <- T
     while ( TempFileExists ) {
       RandomNumber <- paste(sample(x = 1:9, size = 5, replace = T), collapse = "")
-      CurrentTempFileName <- paste0(TempFileBaseName,RandomNumber,".nc")
+      CurrentTempFileName <- paste0(TempFileBaseName,RandomNumber,".grib")
       CurrentTempFilePath <- file.path(OutDir, CurrentTempFileName)
       TempFileExists <- file.exists(CurrentTempFilePath)
     }
@@ -251,7 +253,7 @@ for ( iRow in 1:nrow(PointCoords) ) {
       "time" = Hours,
       #N/W/S/E
       "area" = paste0(LatTo,"/",LonFrom,"/",LatFrom,"/",LonTo),
-      "format" = "netcdf",
+      "format" = "grib",
       "target" = CurrentTempFileName
     )
     
@@ -285,8 +287,22 @@ for ( iRow in 1:nrow(PointCoords) ) {
       
     } #end of Retry as long as file to to download is not found in folder
     
+    #___Convert grib to NetCDF-----
+    CurrentNCFilePath <- gsub(
+      x = CurrentTempFilePath,
+      pattern = ".grib$",
+      replacement = ".nc"
+    )
+    SysCommand <- paste0(
+      FullPathTo_grib_to_netcdf,
+      " -S param -o ",
+      "'", CurrentNCFilePath, "' ",
+      "'", CurrentTempFilePath, "'"
+    )
+    system(SysCommand)
+    
     #___Extract data from NetCDF file----
-    NetCDFFileHandle <- nc_open(CurrentTempFilePath)
+    NetCDFFileHandle <- nc_open(CurrentNCFilePath)
     #Sanity-check NetCDF file
     CurrentVarName <- names(NetCDFFileHandle$var)
     if ( length(CurrentVarName) != 1 ) {
