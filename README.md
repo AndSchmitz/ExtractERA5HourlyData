@@ -9,11 +9,13 @@ This is a wrapper script for the [ecmwfr R package](https://github.com/bluegreen
 
 ### 2. Test R script with demo input CSV
 Test the R script from this repository without changing the input CSV (PointCoords.csv).
+- Install a command line tool that converts ECMWF grib data format to netcdf. For Ubuntu linux, this is the command grib_to_netcdf that can be installed via sudo apt-get install libeccodes-tools.
 - Download all files from this repository (e.g. via Code -> Download ZIP above).
 - Extact the ZIP file. The directory where "ExtractERA5HourlyData.R" is stored is called "working directory" in the following.
 - Make sure the file "PointCoords.csv" is stored in a subfolder "Input" of the working directory.
 - Install all libraries listed in the beginning of "ExtractERA5HourlyData.R".
 - Adjust the variable "WorkDir" in the beginning of "ExtractERA5HourlyData.R" to match the working directory.
+- Adjus the variable "FullPathTo_grib_to_netcdf" in the beginning of "ExtractERA5HourlyData.R" to match the location of the grib_to_netcdf executable (e.g. "/usr/bin/grib_to_netcdf").
 - Enter your CDS credentials (from step 1) in the beginning of "ExtractERA5HourlyData.R".
 - If you are behind a proxy server, adjust proxy settings in the beginning of "ExtractERA5HourlyData.R".
 - Execute the script "ExtractERA5HourlyData.R".
