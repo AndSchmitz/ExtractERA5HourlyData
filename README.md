@@ -61,7 +61,7 @@ If step 2 works as expected, adjust the file .../WorkDir/Input/PointCoords.csv t
 - Note that the script will always downloads full months, no matter which exact days are entered in columns DateStart and DateEnd.
 - Relative humidty is not available as a download parameter, but can be calculated from parameters 2m_temperature and 2m_dewpoint_temperature, for example with [this script](https://github.com/AndSchmitz/CalculateRelHumid).
 - Download speed depends on server load and can be extremely slow.
-- Respect the ERA5 license and citation agreements.
+- Respect the ECMWF data policies and citation agreements.
 
 
 ## Validation
