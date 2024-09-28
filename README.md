@@ -3,7 +3,7 @@ This is a wrapper script for the [ecmwfr R package](https://github.com/bluegreen
 
 ## How to use
 ### 1. Test web-based download function
-- Create an account for the Copernicus climate data storage (CDS) and get your user ID (UID) and API key, following instructions on [this website](
+- Create an account for the Copernicus climate data storage (CDS) and get your user ID (UID) and personal access token (PAT) from [the ECMWF CDS website](
   https://cds.climate.copernicus.eu/).
 - Download a small dataset from [this website](https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels?tab=form), thereby accepting the CDS terms and conditions.
 
@@ -13,10 +13,10 @@ Test the R script from this repository without changing the input CSV (PointCoor
 - Download all files from this repository (e.g. via Code -> Download ZIP above).
 - Extact the ZIP file. The directory where "ExtractERA5HourlyData.R" is stored is called "working directory" in the following.
 - Make sure the file "PointCoords.csv" is stored in a subfolder "Input" of the working directory.
-- Install all libraries listed in the beginning of "ExtractERA5HourlyData.R".
+- Install all R packages listed in the beginning of "ExtractERA5HourlyData.R".
 - Adjust the variable "WorkDir" in the beginning of "ExtractERA5HourlyData.R" to match the working directory.
 - Adjus the variable "FullPathTo_grib_to_netcdf" in the beginning of "ExtractERA5HourlyData.R" to match the location of the grib_to_netcdf executable (e.g. "/usr/bin/grib_to_netcdf").
-- Enter your CDS credentials (from step 1) in the beginning of "ExtractERA5HourlyData.R".
+- Enter your CDS credentials (UID and PAT from step 1) in the beginning of "ExtractERA5HourlyData.R".
 - If you are behind a proxy server, adjust proxy settings in the beginning of "ExtractERA5HourlyData.R".
 - Execute the script "ExtractERA5HourlyData.R".
 - If everything worked, downloaded data is written to .../WorkDir/Output/ERA5_extracted_....csv
