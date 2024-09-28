@@ -4,7 +4,7 @@ This is a wrapper script for the [ecmwfr R package](https://github.com/bluegreen
 ## How to use
 ### 1. Test web-based download function
 - Create an account for the Copernicus climate data storage (CDS) and get your user ID (UID) and API key, following instructions on [this website](
-  https://github.com/bluegreen-labs/ecmwfr#use-copernicus-climate-data-store-cds).
+  [https://github.com/bluegreen-labs/ecmwfr#use-copernicus-climate-data-store-cds](https://cds.climate.copernicus.eu/)).
 - Download a small dataset from [this website](https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels?tab=form), thereby accepting the CDS terms and conditions.
 
 ### 2. Test R script with demo input CSV
