@@ -18,7 +18,7 @@ Test the R script from this repository without changing the input CSV (PointCoor
 - Adjus the variable "FullPathTo_grib_to_netcdf" in the beginning of "ExtractERA5HourlyData.R" to match the location of the grib_to_netcdf executable (e.g. "/usr/bin/grib_to_netcdf").
 - Enter your CDS credentials (UID and PAT from step 1) in the beginning of "ExtractERA5HourlyData.R".
 - If you are behind a proxy server, adjust proxy settings in the beginning of "ExtractERA5HourlyData.R".
-- Execute the script "ExtractERA5HourlyData.R". Note that depending on your operating system, the ecmwfr R packages will try to save the UID/PAT to the local machines keyring (thus asking for user password).
+- Execute the script "ExtractERA5HourlyData.R". Note that depending on your operating system, the ecmwfr R package will try to save the UID/PAT to the local machines keyring (thus asking for user password).
 - If everything worked, downloaded data is written to .../WorkDir/Output/ERA5_extracted_....csv
 
 ### 3. Adjust input CSV
