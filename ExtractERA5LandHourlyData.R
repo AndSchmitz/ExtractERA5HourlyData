@@ -391,7 +391,7 @@ for ( iRow in 1:nrow(PointCoords) ) {
     DateTimeZero_UTC <- ymd_hms("1900-01-01 00:00:00")
     DateTime_UTC <- DateTimeZero_UTC + hours(CurrentTimes)
     CurrentOutput <- data.frame(
-      TimeStamp_UTC = DateTime_UTC,
+      TimeStamp_UTC = format(DateTime_UTC, "%Y-%m-%d %H:%M:%S"),
       Value = round(ValuesNumeric,ValueDecimalPrecision),
       LocationLabel = CurrentRowLabel,
       Dataset = CurrentDataset,
